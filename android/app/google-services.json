@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "915854081446",
+    "project_id": "marketies-3755c",
+    "storage_bucket": "marketies-3755c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:915854081446:android:fd1f0105579e6d06c12367",
+        "android_client_info": {
+          "package_name": "com.example.marketies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "915854081446-143nv8cdfinpqbjnl0fki4lcskrdtq8e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCIMHi5Kcu5YRNzn7nJ99cYRwm2pLI6ns"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "915854081446-143nv8cdfinpqbjnl0fki4lcskrdtq8e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
