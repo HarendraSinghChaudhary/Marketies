@@ -115,7 +115,7 @@ class JobDetails extends StatelessWidget {
             margin: EdgeInsets.symmetric(horizontal: 20),
             child: Text(
 
-                     one['description'].toString(),
+                    one['description'].toString(),
                      textAlign: TextAlign.start,
                        style: GoogleFonts.cabin(
                            height: 1.5, // the height between text, default is 1.0
@@ -125,6 +125,9 @@ class JobDetails extends StatelessWidget {
                            fontSize: 16),
                      ),
           ),
+
+
+          SizedBox(height: 100,)
 
 
 
