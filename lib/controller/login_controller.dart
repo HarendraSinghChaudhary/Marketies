@@ -13,51 +13,38 @@ import 'package:marketies/screens/otp_signup.dart';
 import 'package:marketies/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
-
-
 class LoginController extends GetxController {
+  RxBool isLoading = false.obs;
 
-RxBool isLoading = false.obs;
+  var response = "";
+  var tokenId = "";
 
-var response = "";
-var tokenId= "";
-
-
- @override
+  @override
   void onInit() {
-   
-   token();
+    token();
     super.onInit();
   }
 
-
-
-
-
-
-
-
- Future<dynamic> loginApi(String email, String password,) async {
-     isLoading(true);
+  Future<dynamic> loginApi(
+    String email,
+    String password,
+  ) async {
+    isLoading(true);
     print(email);
     print(password);
 
-     print("avialble token : "+tokenId.toString());
+    print("avialble token : " + tokenId.toString());
     String msg = "";
     var jsonRes;
     http.Response? res;
     var request = http.post(
         Uri.parse(
           RestDatasource.LOGIN_URL,
-        
         ),
         body: {
           "email": email.toString().trim(),
           "password": password.toString().trim(),
           "deviceId": tokenId.toString()
-          
         });
 
     await request.then((http.Response response) {
@@ -69,61 +56,60 @@ var tokenId= "";
       print("status: " + jsonRes["status"].toString() + "_");
       print("message: " + jsonRes["message"].toString() + "_");
       msg = jsonRes["message"].toString();
-    
     });
     if (res!.statusCode == 200) {
       if (jsonRes["success"] == true) {
         SharedPreferences prefs = await SharedPreferences.getInstance();
         prefs.setString('id', jsonRes["data"]["Data"]["id"].toString());
         prefs.setString('name', jsonRes["data"]["Data"]["name"].toString());
-        prefs.setString('first_name', jsonRes["data"]["Data"]["first_name"].toString());
+        prefs.setString(
+            'first_name', jsonRes["data"]["Data"]["first_name"].toString());
         prefs.setString('email', jsonRes["data"]["Data"]["email"].toString());
-        prefs.setString('last_name', jsonRes["data"]["Data"]["last_name"].toString());
+        prefs.setString(
+            'last_name', jsonRes["data"]["Data"]["last_name"].toString());
         prefs.setString('mobile', jsonRes["data"]["Data"]["mobile"].toString());
-        prefs.setString('profile_pic', jsonRes["data"]["Data"]["profile_pic"].toString());
-        prefs.setString('ranking', jsonRes["data"]["Data"]["ranking"].toString());
-        prefs.setString('email_verified_at', jsonRes["data"]["Data"]["email_verified_at"].toString());
-        prefs.setString('created_at', jsonRes["data"]["Data"]["created_at"].toString());
-        prefs.setString('total_wallet_amount', jsonRes["data"]["Data"]["total_wallet_amount"].toString());
-        prefs.setString('current_wallet_amout', jsonRes["data"]["Data"]["current_wallet_amout"].toString());
+        prefs.setString(
+            'profile_pic', jsonRes["data"]["Data"]["profile_pic"].toString());
+        prefs.setString(
+            'ranking', jsonRes["data"]["Data"]["ranking"].toString());
+        prefs.setString('email_verified_at',
+            jsonRes["data"]["Data"]["email_verified_at"].toString());
+        prefs.setString(
+            'created_at', jsonRes["data"]["Data"]["created_at"].toString());
+        prefs.setString('total_wallet_amount',
+            jsonRes["data"]["Data"]["total_wallet_amount"].toString());
+        prefs.setString('current_wallet_amout',
+            jsonRes["data"]["Data"]["current_wallet_amout"].toString());
         prefs.setString('status', jsonRes["data"]["Data"]["status"].toString());
         // prefs.setString('kycStatus', jsonRes["data"]["kycStatus"].toString());
         prefs.commit();
 
-    // Get.snackbar(msg.toString(), "",  snackPosition: SnackPosition.TOP,);
+        // Get.snackbar(msg.toString(), "",  snackPosition: SnackPosition.TOP,);
 
         // _handleRemeberme(remember);
         Get.offAllNamed("/homeNav");
 
-
         // update();
 
-
-        print("hamara kyc ...."+jsonRes["data"]["kycStatus"].toString());
+        print("hamara kyc ...." + jsonRes["data"]["kycStatus"].toString());
 
         isLoading(false);
 
-       Fluttertoast.showToast(
-        msg: msg.toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: kPrimaryColor,
-        textColor: Colors.white,
-        fontSize: 14.0
-    );
-      
-      
-      }else{
-           isLoading(false);
-     
-
+        Fluttertoast.showToast(
+            msg: msg.toString(),
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: kPrimaryColor,
+            textColor: Colors.white,
+            fontSize: 14.0);
+      } else {
+        isLoading(false);
       }
     } else {
-
       response = msg.toString();
 
-      print("khdbdsbd..... "+response.toString());
+      print("khdbdsbd..... " + response.toString());
 
       // Get.snackbar(
       //   'Please enter valid credentials', "",  snackPosition: SnackPosition.BOTTOM,
@@ -133,49 +119,25 @@ var tokenId= "";
       // );
 
       Fluttertoast.showToast(
-        msg: msg.toString(),
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: kPrimaryColor,
-        textColor: Colors.white,
-        fontSize: 14.0
-    );
-
-
-
+          msg: msg.toString(),
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: kPrimaryColor,
+          textColor: Colors.white,
+          fontSize: 14.0);
 
       isLoading(false);
     }
-
   }
 
+  token() {
+    var messaging = FirebaseMessaging.instance;
+    messaging.getToken().then((value) {
+      print("token: " + value.toString());
+      tokenId = value.toString();
 
-
-
-
-  token(){
-      var messaging = FirebaseMessaging.instance;
-                messaging.getToken().then((value) {
-print("token: "+value.toString());
-tokenId = value.toString();
-
-
- print("new token: "+tokenId.toString());
-
-
-                }
-
-                
-                
-                );
-    }
-
-   
-
-
-
-
-
-
+      print("new token: " + tokenId.toString());
+    });
+  }
 }
