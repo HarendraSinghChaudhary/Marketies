@@ -267,11 +267,13 @@ class _WalletState extends State<Wallet> {
                                   : SizedBox(
                                       width: 350,
                                       height: 50,
-                                      child: FlatButton(
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30)),
-                                        color: kPrimaryColor,
+                                      child: TextButton(
+                                        style: TextButton.styleFrom(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30)),
+                                          backgroundColor: kPrimaryColor,
+                                        ),
                                         onPressed: () async {
                                           if (validateForm(_formKey) == true) {
                                             var amount = int.parse(
@@ -364,12 +366,15 @@ class _WalletState extends State<Wallet> {
                                                                     width: 140,
                                                                     height: 40,
                                                                     child:
-                                                                        FlatButton(
-                                                                      color:
-                                                                          kPrimaryColor,
-                                                                      shape: RoundedRectangleBorder(
-                                                                          borderRadius:
-                                                                              BorderRadius.circular(20)),
+                                                                        TextButton(
+                                                                      style: TextButton
+                                                                          .styleFrom(
+                                                                        backgroundColor:
+                                                                            kPrimaryColor,
+                                                                        shape: RoundedRectangleBorder(
+                                                                            borderRadius:
+                                                                                BorderRadius.circular(20)),
+                                                                      ),
                                                                       onPressed:
                                                                           () {
                                                                         Get.back();
@@ -389,9 +394,6 @@ class _WalletState extends State<Wallet> {
                                                                   ),
                                                                 ],
                                                               ));
-                                                        
-                                                        
-                                                        
                                                         } else {
                                                           setState(() {});
 
@@ -496,14 +498,16 @@ class _WalletState extends State<Wallet> {
                                                           SizedBox(
                                                             width: 140,
                                                             height: 40,
-                                                            child: FlatButton(
-                                                              color:
-                                                                  kPrimaryColor,
-                                                              shape: RoundedRectangleBorder(
-                                                                  borderRadius:
-                                                                      BorderRadius
-                                                                          .circular(
-                                                                              20)),
+                                                            child: TextButton(
+                                                              style: TextButton
+                                                                  .styleFrom(
+                                                                backgroundColor:
+                                                                    kPrimaryColor,
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            20)),
+                                                              ),
                                                               onPressed: () {
                                                                 // Get.to(
                                                                 //     // KYCDetails1());
@@ -698,17 +702,17 @@ class _WalletState extends State<Wallet> {
                                 Text(
                                   //"29-12-2021, 04:02 AM",
                                   Get.find<WalletHistoryController>()
-                                          .walletHistoryList[index]
-                                          .created_at
-                                          .toString()
-                                          .substring(0, 10),
-                                      //      +
-                                      // " , " +
-                                      // Get.find<WalletHistoryController>()
-                                      //     .walletHistoryList[index]
-                                      //     .created_at
-                                      //     .toString()
-                                      //     .substring(11, 16),
+                                      .walletHistoryList[index]
+                                      .created_at
+                                      .toString()
+                                      .substring(0, 10),
+                                  //      +
+                                  // " , " +
+                                  // Get.find<WalletHistoryController>()
+                                  //     .walletHistoryList[index]
+                                  //     .created_at
+                                  //     .toString()
+                                  //     .substring(11, 16),
                                   style: GoogleFonts.cabin(
                                       fontSize: 18,
                                       color: Colors.black,
@@ -727,19 +731,19 @@ class _WalletState extends State<Wallet> {
                                 SizedBox(
                                   height: 5,
                                 ),
-
-                                 Text(
+                                Text(
                                   //"Withdrawal",
 
-                                  "Transaction Id: "+Get.find<WalletHistoryController>()
+                                  "Transaction Id: " +
+                                      Get.find<WalletHistoryController>()
                                           .walletHistoryList[index]
-                                          .transaction_id.toString(),
+                                          .transaction_id
+                                          .toString(),
                                   style: GoogleFonts.cabin(
                                     fontSize: 14,
                                     color: kTextFieldColor,
                                   ),
                                 ),
-
                                 SizedBox(
                                   height: 5,
                                 ),
@@ -850,17 +854,17 @@ class _WalletState extends State<Wallet> {
                                 Text(
                                   //"29-12-2021, 04:02 AM",
                                   Get.find<WalletHistoryController>()
-                                          .creditHistoryList[index]
-                                          .created_at
-                                          .toString()
-                                          .substring(0, 10),
-                                          // +
-                                      // " , " +
-                                      // Get.find<WalletHistoryController>()
-                                      //     .creditHistoryList[index]
-                                      //     .created_at
-                                      //     .toString()
-                                      //     .substring(11, 16),
+                                      .creditHistoryList[index]
+                                      .created_at
+                                      .toString()
+                                      .substring(0, 10),
+                                  // +
+                                  // " , " +
+                                  // Get.find<WalletHistoryController>()
+                                  //     .creditHistoryList[index]
+                                  //     .created_at
+                                  //     .toString()
+                                  //     .substring(11, 16),
                                   style: GoogleFonts.cabin(
                                       fontSize: 18,
                                       color: Colors.black,

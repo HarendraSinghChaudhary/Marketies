@@ -167,7 +167,9 @@ class _HelpState extends State<Help> {
                       controller: _controller,
                       itemCount: splashData.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return ExpandableNotifier(
+                        return 
+                        
+                        ExpandableNotifier(
                             child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Card(
@@ -254,10 +256,104 @@ class _HelpState extends State<Help> {
                             ),
                           ),
                         ));
+                      
+                      
+                      
                       },
                     ),
 
-                    SizedBox(height: 20,)
+                    SizedBox(height: 50,),
+
+                    ExpandableNotifier(
+                            child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Card(
+                            elevation: 0,
+                            color: Colors.white,
+                            clipBehavior: Clip.antiAlias,
+                            child: Column(
+                              children: <Widget>[
+                                ScrollOnExpand(
+                                  scrollOnExpand: true,
+                                  scrollOnCollapse: false,
+                                  child: ExpandablePanel(
+                                    theme: const ExpandableThemeData(
+                                      useInkWell: true,
+                                      iconColor: kmenuColor,
+                                      iconSize: 30,
+                                      headerAlignment:
+                                          ExpandablePanelHeaderAlignment.center,
+                                      tapBodyToCollapse: true,
+                                    ),
+                                    header: Padding(
+                                        padding: EdgeInsets.all(10),
+                                        child: Text(
+                                           "Lorem ipsum dolor sit amet?",
+                                          // splashData[index]["title"]
+                                          //     .toString(),
+                                          // faqList[index].question.toString(),
+                                          style: GoogleFonts.cabin(
+                                              color: Colors.black,
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600),
+                                        )),
+                                    collapsed: Text(
+                                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                                      //faqList[index].answers.toString(),
+                                        // splashData[index]["subtitle"]
+                                        //       .toString(),
+                                      softWrap: true,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: GoogleFonts.cabin(
+                                        color: Colors.black54,
+                                        fontSize: 14,
+                                      ),
+                                    ),
+                                    expanded: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        for (var _ in Iterable.generate(1))
+                                          Padding(
+                                              padding:
+                                                  EdgeInsets.only(bottom: 10),
+                                              child: Text(
+                                                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+
+                                                  // faqList[index].answers.toString(),
+                                                    // splashData[index]["subtitle"]
+                                              // .toString(),
+                                                  softWrap: true,
+                                                  overflow: TextOverflow.fade,
+                                                  style: GoogleFonts.cabin(
+                                                      color: Colors.black54,
+                                                      fontSize: 14,
+                                                      height: 1.5,
+                                                      letterSpacing: 1))),
+                                      ],
+                                    ),
+                                    builder: (_, collapsed, expanded) {
+                                      return Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 12, right: 3, bottom: 5),
+                                        child: Expandable(
+                                          collapsed: collapsed,
+                                          expanded: expanded,
+                                          theme: const ExpandableThemeData(
+                                              crossFadePoint: 0),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ))
+                      
+
+
                   ],
                 ),
               ),

@@ -10,22 +10,19 @@ class Introduction extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.blueGrey,
- 
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/images/bg.png"),
-                fit: BoxFit.cover)
-            ),
-          ),
+        // backgroundColor: Colors.blueGrey,
 
-          Body()
-        ],
-      )
-      );
+        body: Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/bg.png"),
+                  fit: BoxFit.cover)),
+        ),
+        Body()
+      ],
+    ));
   }
 }
 
@@ -44,26 +41,20 @@ class _BodyState extends State<Body> {
       "title": "Earn unlimited without"
           "\n any hassle"
     },
-
-      {
-      "text":  "Earn by referring all your"
+    {
+      "text": "Earn by referring all your"
           "\n favorite brands",
-          // "\nthe printing and typesetting industry.",
+      // "\nthe printing and typesetting industry.",
       "image": "assets/images/1st.png",
       "title": "Start your 'Passive Income'"
-      "\n  with us",
-      
-      
+          "\n  with us",
     },
     {
       "text": "Withdraw your payouts anytime"
           "\n in your linked bank account",
       "image": "assets/images/2nd.png",
-      "title":  "Secure and timely payouts "
-      
-       
+      "title": "Secure and timely payouts "
     },
-  
   ];
 
   var id;
@@ -120,10 +111,12 @@ class _BodyState extends State<Body> {
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               border: Border.all(color: kPrimaryColor)),
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            color: Colors.white,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              backgroundColor: Colors.white,
+                            ),
                             onPressed: () {
                               Get.toNamed("/login");
                             },
@@ -139,12 +132,14 @@ class _BodyState extends State<Body> {
                         SizedBox(
                           width: 160,
                           height: 50,
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10)),
-                            color: kPrimaryColor,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              backgroundColor: kPrimaryColor,
+                            ),
                             onPressed: () {
-                                Get.toNamed("/signup");
+                              Get.toNamed("/signup");
                             },
                             child: Text(
                               "Register",

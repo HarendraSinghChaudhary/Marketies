@@ -50,28 +50,26 @@ class _MoreMenuState extends State<MoreMenu> {
     }
   }
 
-void runApi()async {
-  Get.find<WalletController>().isLoading.value = true;
-  await Get.find<WalletController>().walletApi();
-  setState(() {
-    Get.find<WalletController>().isLoading.value = false;
-  });
-}
+  void runApi() async {
+    Get.find<WalletController>().isLoading.value = true;
+    await Get.find<WalletController>().walletApi();
+    setState(() {
+      Get.find<WalletController>().isLoading.value = false;
+    });
+  }
 
-@override
-void initState() {
-  super.initState();
-   Get.lazyPut<HomeController>(() => HomeController());
+  @override
+  void initState() {
+    super.initState();
+    Get.lazyPut<HomeController>(() => HomeController());
 
     Get.lazyPut<EditProfileController>(() => EditProfileController());
-    Get.lazyPut<WalletController>(() =>WalletController());
-      runApi();
-}
+    Get.lazyPut<WalletController>(() => WalletController());
+    runApi();
+  }
 
   @override
   Widget build(BuildContext context) {
-   
-  
     return Scaffold(
         body: GetBuilder<HomeController>(
             init: HomeController(),
@@ -105,7 +103,6 @@ void initState() {
                                 Container(
                                   height: 280,
                                   width: double.infinity,
-                          
                                   child: Stack(
                                     children: [
                                       ClipPath(
@@ -119,19 +116,20 @@ void initState() {
                                       Padding(
                                         padding: EdgeInsets.only(top: 70.0),
                                         child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.center,
-                                          
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
                                             Column(
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                             
-                                            
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               children: [
                                                 Column(
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  mainAxisAlignment: MainAxisAlignment.center,
-                                             
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Container(
                                                       height: 100,
@@ -151,7 +149,8 @@ void initState() {
                                                                   radius: 50,
                                                                   backgroundImage:
                                                                       FileImage(File(
-                                                                          files!.path)),
+                                                                          files!
+                                                                              .path)),
                                                                 ),
                                                           Positioned(
                                                             top: 60,
@@ -164,16 +163,18 @@ void initState() {
                                                                 height: 25,
                                                                 width: 25,
                                                                 decoration: BoxDecoration(
-                                                                    shape:
-                                                                        BoxShape.circle,
-                                                                    color: Colors.white,
+                                                                    shape: BoxShape
+                                                                        .circle,
+                                                                    color: Colors
+                                                                        .white,
                                                                     border: Border.all(
                                                                         color: Colors
                                                                             .grey)),
                                                                 child: Center(
                                                                     child: Icon(
                                                                   Icons.edit,
-                                                                  color: Colors.grey,
+                                                                  color: Colors
+                                                                      .grey,
                                                                   size: 14,
                                                                 )),
                                                               ),
@@ -280,23 +281,10 @@ void initState() {
                                 ),
                                 InkWell(
                                   onTap: () {
-
-
-                                      
-
-
-
-
-
                                     if (Get.find<WalletController>()
                                             .kycStatus
                                             .toString() ==
                                         "1") {
-
-                                           
-
-
-
                                       Fluttertoast.showToast(
                                           msg: "Your KYC is approved",
                                           toastLength: Toast.LENGTH_SHORT,
@@ -308,8 +296,8 @@ void initState() {
                                     } else if (Get.find<WalletController>()
                                             .kycStatus
                                             .toString() ==
-                                        "0") { 
-                                          Fluttertoast.showToast(
+                                        "0") {
+                                      Fluttertoast.showToast(
                                           msg: "Your KYC is pending",
                                           toastLength: Toast.LENGTH_SHORT,
                                           gravity: ToastGravity.BOTTOM,
@@ -317,15 +305,8 @@ void initState() {
                                           backgroundColor: kPrimaryColor,
                                           textColor: Colors.white,
                                           fontSize: 14.0);
-
-
-                                      
-                                     
-                                    }
-
-                                    else{
-                                       Get.toNamed("/kyc1");
-
+                                    } else {
+                                      Get.toNamed("/kyc1");
                                     }
                                   },
                                   child: Container(
@@ -343,43 +324,38 @@ void initState() {
                                                 fontWeight: FontWeight.w700)),
                                         Row(
                                           children: [
-
-
-                                              Get.find<WalletController>().isLoading.value
-                    ? Align(
-                        alignment: Alignment.center,
-                        child: Platform.isAndroid
-                            ? CircularProgressIndicator()
-                            : CupertinoActivityIndicator())
-                    :
                                             Get.find<WalletController>()
-                                                        .kycStatus
-                                                        .toString() ==
-                                                    "1"
-                                                ? Text("Approved",
-                                                    style: GoogleFonts.cabin(
-                                                        color: kApprovedColor,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w700)) :
-
-                                                            Get.find<WalletController>()
-                                                        .kycStatus
-                                                        .toString() ==
-                                                    "2"
-                                                ? Text("Rejected",
-                                                    style: GoogleFonts.cabin(
-                                                        color: kRedColor,
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w700))
-                                                : Text("Pending",
-                                                    style: GoogleFonts.cabin(
-                                                        color:
-                                                            Color(0xFFFA1100),
-                                                        fontSize: 14,
-                                                        fontWeight:
-                                                            FontWeight.w700)),
+                                                    .isLoading
+                                                    .value
+                                                ? Align(
+                                                    alignment: Alignment.center,
+                                                    child: Platform.isAndroid
+                                                        ? CircularProgressIndicator()
+                                                        : CupertinoActivityIndicator())
+                                                : Get.find<WalletController>().kycStatus.toString() ==
+                                                        "1"
+                                                    ? Text("Approved",
+                                                        style: GoogleFonts.cabin(
+                                                            color:
+                                                                kApprovedColor,
+                                                            fontSize: 14,
+                                                            fontWeight: FontWeight
+                                                                .w700))
+                                                    : Get.find<WalletController>().kycStatus.toString() ==
+                                                            "2"
+                                                        ? Text("Rejected",
+                                                            style: GoogleFonts.cabin(
+                                                                color:
+                                                                    kRedColor,
+                                                                fontSize: 14,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w700))
+                                                        : Text("Pending",
+                                                            style: GoogleFonts.cabin(
+                                                                color: Color(0xFFFA1100),
+                                                                fontSize: 14,
+                                                                fontWeight: FontWeight.w700)),
                                             SizedBox(
                                               width: 10,
                                             ),
@@ -603,12 +579,15 @@ void initState() {
                                             SizedBox(
                                               width: 140,
                                               height: 40,
-                                              child: FlatButton(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20)),
-                                                color: kPrimaryColor,
+                                              child: TextButton(
+                                                style: TextButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              10)),
+                                                  backgroundColor:
+                                                      kPrimaryColor,
+                                                ),
                                                 onPressed: () async {
                                                   var prefs =
                                                       await SharedPreferences
@@ -657,11 +636,13 @@ void initState() {
                                             SizedBox(
                                               width: 140,
                                               height: 40,
-                                              child: FlatButton(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20)),
+                                              child: TextButton(
+                                                style: TextButton.styleFrom(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                ),
                                                 onPressed: () {
                                                   Get.back();
                                                 },
@@ -677,11 +658,6 @@ void initState() {
                                             ),
                                           ],
                                         ));
-                                 
-                                 
-                                 
-                                 
-                                 
                                   },
                                   child: Container(
                                     margin:
