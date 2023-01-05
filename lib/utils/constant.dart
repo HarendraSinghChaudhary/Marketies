@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
 const kPrimaryColor = Color(0xFF24A8FF);
 const kPinkColor = Color(0xFFFF6895);
 const kCyanColor = Color(0xFF33CCCC);
@@ -24,7 +21,6 @@ const kIconBackgroundColor = Color(0XFFAAAAAA);
 
 const kAnimationDuration = Duration(milliseconds: 200);
 
-
 validateForm(GlobalKey<FormState> _formKey) {
   print('inside validation');
   FormState? form = _formKey.currentState;
@@ -35,3 +31,10 @@ validateForm(GlobalKey<FormState> _formKey) {
     return false;
   }
 }
+
+// new color for picktask project
+
+const pBackgroundColor = Color(0xFF000018); // background color for all screens
+const pWhiteColor = Colors.white; // white color for all screens
+const pPrimaryColor = Color(0xFF25232E);  // primary color of app
+

@@ -453,6 +453,12 @@ class _HomeState extends State<Home> {
                                     ),
                                     SizedBox(
                                       height: 10,
+                                    ),
+                                    Divider(
+                                      color: Colors.grey,
+                                      thickness: 0.5,
+                                      height: 0.5,
+
                                     )
                                   ],
                                 ),

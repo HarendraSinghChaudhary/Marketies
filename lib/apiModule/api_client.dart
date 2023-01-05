@@ -1,15 +1,10 @@
-
-
-
-
-
 // ignore_for_file: non_constant_identifier_names, prefer_const_declarations
 
 class RestDatasource {
-  
- // static final BASE_URL = "https://appicsoftwares.in/development/marketies/public/api/v1/";
+  // static final BASE_URL = "https://appicsoftwares.in/development/marketies/public/api/v1/";
   static final BASE_URL = "https://growwingssolution.in/apis/public/api/v1/";
-  static final BASE1_URL = "https://appicsoftwares.in/development/Marketies/public/api/";
+  static final BASE1_URL =
+      "https://appicsoftwares.in/development/Marketies/public/api/";
   static final JOB_URL = BASE_URL + "jobs";
   static final SIGNUP_URL = BASE_URL + "register";
   static final LOGIN_URL = BASE_URL + "login";
@@ -30,5 +25,4 @@ class RestDatasource {
   static final CREATELEAD_URL = BASE_URL + "createLead";
   // static final GETLEADSDATA_URL = BASE1_URL + "convertedLeads";
   static final GETAPI = BASE_URL + "convertedLeads";
-
 }

@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -32,6 +31,7 @@ import 'package:marketies/screens/leads.dart';
 import 'package:marketies/screens/login.dart';
 import 'package:marketies/screens/menu.dart';
 import 'package:marketies/screens/notification.dart';
+import 'package:marketies/screens/onboarding/p_login.dart';
 import 'package:marketies/screens/otp.dart';
 import 'package:marketies/screens/otp_signup.dart';
 import 'package:marketies/screens/privacy.dart';
@@ -41,6 +41,7 @@ import 'package:marketies/screens/splash.dart';
 import 'package:marketies/screens/termsandcondition.dart';
 import 'package:marketies/screens/wallet.dart';
 import 'package:http/http.dart' as http;
+import 'package:marketies/utils/constant.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<void> backgroundHandler(RemoteMessage message) async {
@@ -66,18 +67,9 @@ class Marketies extends StatefulWidget {
 }
 
 class _MarketiesState extends State<Marketies> {
-
   var title = "";
 
   List<String> notificationList = [];
-
-
-
-
-
-
-
-
 
   @override
   void initState() {
@@ -95,18 +87,15 @@ class _MarketiesState extends State<Marketies> {
               FirebaseMessaging.instance.getInitialMessage.toString());
           print("New Notification");
 
-          if(message.notification!=null){
-            Map <String, dynamic> map = Map();
+          if (message.notification != null) {
+            Map<String, dynamic> map = Map();
             map["title"] = message.notification!.title.toString();
             map["body"] = message.notification!.body.toString();
             createListMap(map);
-          }else if(message.data!=null){
-          
+          } else if (message.data != null) {
             createListMap(message.data);
           }
-          
 
-        
           // if (message.data['_id'] != null) {
           //   Navigator.of(context).push(
           //     MaterialPageRoute(
@@ -127,22 +116,20 @@ class _MarketiesState extends State<Marketies> {
         if (message.notification != null) {
           print("second Type " + FirebaseMessaging.onMessage.listen.toString());
           print(message.notification!.title);
-       
+
           print(message.notification!.body);
-          notificationList.add(message.notification!.title.toString()) ;
+          notificationList.add(message.notification!.title.toString());
           print("message.data11 ${message.data}");
           LocalNotificationService.createanddisplaynotification(message);
 
-           if(message.notification!=null){
-            Map <String, dynamic> map = Map();
+          if (message.notification != null) {
+            Map<String, dynamic> map = Map();
             map["title"] = message.notification!.title.toString();
             map["body"] = message.notification!.body.toString();
             createListMap(map);
-          }else if(message.data!=null){
-          
+          } else if (message.data != null) {
             createListMap(message.data);
           }
-
         }
       },
     );
@@ -158,78 +145,67 @@ class _MarketiesState extends State<Marketies> {
           print(message.notification!.title);
           title = message.notification!.title.toString();
           print(message.notification!.body);
-          notificationList.add(message.notification!.title.toString()) ;
+          notificationList.add(message.notification!.title.toString());
           print("message.data22 ${message.data['_id']}");
 
-           print("title three: "+title.toString());
+          print("title three: " + title.toString());
 
-            if(message.notification!=null){
-            Map <String, dynamic> map = Map();
+          if (message.notification != null) {
+            Map<String, dynamic> map = Map();
             map["title"] = message.notification!.title.toString();
             map["body"] = message.notification!.body.toString();
             createListMap(map);
-          }else if(message.data!=null){
-          
+          } else if (message.data != null) {
             createListMap(message.data);
           }
-
-         
-
-
         }
       },
     );
 
+    print("title one: " + title.toString());
 
-
-    print("title one: "+title.toString());
-
-
-    print("list: "+notificationList.toString());
+    print("list: " + notificationList.toString());
   }
 
-
-    Future<void> createListMap(Map<String, dynamic> map) async {
+  Future<void> createListMap(Map<String, dynamic> map) async {
     print("ListSaveMap");
     SharedPreferences preferences = await SharedPreferences.getInstance();
     List<String>? titleList = preferences.getStringList('titleList');
     List<String>? bodyList = preferences.getStringList('bodyList');
     List<String>? isReadList = preferences.getStringList('isRead');
-   // List<String>? idList = preferences.getStringList('idList');
-   
+    // List<String>? idList = preferences.getStringList('idList');
 
     // List<String> timeList = preferences.getStringList('timeList');
-    if(titleList!=null && bodyList!=null && isReadList!=null 
-    // && idList!=null
-    ){
+    if (titleList != null && bodyList != null && isReadList != null
+        // && idList!=null
+        ) {
       titleList.add(map["title"].toString());
       bodyList.add(map["body"].toString());
-    
+
       isReadList.add("false");
       preferences.setStringList("titleList", titleList);
       preferences.setStringList("bodyList", bodyList);
-   
+
       // preferences.setStringList("idList", idList);
-    
+
       //  preferences.setStringList("timeList", timeList);
       preferences.commit();
-    }else{
+    } else {
       List<String> titleListNew = [];
       List<String> bodyListNew = [];
       List<String> isReadListNew = [];
       List<String> idList = [];
-   
 
       titleListNew.add(map["title"].toString());
       bodyListNew.add(map["body"].toString());
-     
+
       // if(map.containsKey("id")) {
       //   idList.add(map["id"].toString());
       // }else{
       //   idList.add("");
 
       // }
-   
+
       isReadListNew.add("false");
 
       preferences.setStringList("titleList", titleListNew);
@@ -237,22 +213,14 @@ class _MarketiesState extends State<Marketies> {
       preferences.setStringList("isRead", isReadListNew);
 
       // preferences.setStringList("idList", idList);
-  
-      preferences.commit();
 
-     
+      preferences.commit();
     }
- print("title: "+preferences.getStringList("titleList").toString());
-      print("body: "+preferences.getStringList("bodyList").toString());
+    print("title: " + preferences.getStringList("titleList").toString());
+    print("body: " + preferences.getStringList("bodyList").toString());
 
     // getNotify();
   }
-
-
-
-
-
-  
 
   @override
   Widget build(BuildContext context) {
@@ -262,9 +230,10 @@ class _MarketiesState extends State<Marketies> {
       locale: Locale('en', 'US'),
       fallbackLocale: Locale('en', 'US'),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(scaffoldBackgroundColor: pBackgroundColor),
       title: "Marketies",
       initialRoute: "/",
-      home: Splash(),
+      home: Plogin(),
 
       getPages: [
         GetPage(name: "/", page: () => Marketies()),

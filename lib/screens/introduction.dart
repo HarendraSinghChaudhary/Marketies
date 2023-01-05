@@ -177,12 +177,6 @@ class _BodyState extends State<Body> {
     );
   }
 
-  //  Future<void> Getid() async {
-  //   SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   id = prefs.getString("id");
-  //   print(id);
-  //   setState(() {});
-  // }
 
 }
 

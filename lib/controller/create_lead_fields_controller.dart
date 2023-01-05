@@ -1,19 +1,14 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'package:marketies/apiModule/api_client.dart';
 import 'package:http/http.dart' as http;
 import 'package:marketies/models/create_lead_fields_model.dart';
 
-import 'package:marketies/models/lead_list_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
-
 class CreateLeadFieldsController extends GetxController {
-
   RxBool isLoading = false.obs;
   RxList createLeadFiledsList = [].obs;
   var jobId = "";
@@ -25,18 +20,14 @@ class CreateLeadFieldsController extends GetxController {
   @override
   void onInit() {
     // TODO: implement onInit
-    createLeadFieldsApi(); 
+    createLeadFieldsApi();
     super.onInit();
   }
 
- 
-updateID(var postID) {
-  jobId= postID;
-  print('im print ${jobId}');
-  
-}
-
-
+  updateID(var postID) {
+    jobId = postID;
+    print('im print ${jobId}');
+  }
 
   var jobIdd = "";
 
@@ -60,14 +51,10 @@ updateID(var postID) {
         Uri.parse(
           RestDatasource.CREATELEADFIELDS_URL,
         ),
-        body: {
-          "userId": id.toString().trim(),
-          "jobId": jobId
-        });
+        body: {"userId": id.toString().trim(), "jobId": jobId});
 
     await request.then((http.Response response) {
       res = response;
-      
     });
 
     if (res!.statusCode == 200) {
@@ -80,7 +67,7 @@ updateID(var postID) {
       print(jsonRes["status"]);
 
       // image = jsonRes['data']["isImage"];
-      print("image is coming ...."+jsonRes['data']["isImage"].toString());
+      print("image is coming ...." + jsonRes['data']["isImage"].toString());
 
       var image1 = jsonRes['data']["isImage"];
       var textImage1 = jsonRes['data']["imageText"].toString();
@@ -89,7 +76,7 @@ updateID(var postID) {
 
       image = image1;
 
-      print("rest: "+image.toString());
+      print("rest: " + image.toString());
 
       if (jsonRes['data']["status"].toString() == "true") {
         createLeadFiledsList.clear();
@@ -101,7 +88,6 @@ updateID(var postID) {
           modelAgentSearch.job_id = jsonArray[i]["job_id"].toString();
 
           modelAgentSearch.created_at = jsonArray[i]["created_at"].toString();
-          
 
           createLeadFiledsList.add(modelAgentSearch);
 
@@ -118,26 +104,10 @@ updateID(var postID) {
         //   colorText: Colors.red,
         // );
       } else {
-       
-
         isLoading(false);
       }
     } else {
-    
       isLoading(false);
     }
   }
-
-
-
-
-
-
-
-
-
-
-
-  
-
 }
